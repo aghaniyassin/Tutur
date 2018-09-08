@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature 'Users', type: :feature do
-  feature 'User' do
+  describe 'POST /users' do
 
-    scenario 'Sign up' do
+    scenario 'expect to sign up' do
       visit new_users_path
 
       user = FactoryBot.build(:user)
-      
+
       fill_in 'user_first_name', with: user.first_name
       fill_in 'user_last_name', with: user.last_name
       fill_in 'user_email', with: user.email

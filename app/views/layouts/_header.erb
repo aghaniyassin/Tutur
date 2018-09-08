@@ -6,8 +6,8 @@
   <div class="collapse navbar-collapse " id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <% if current_user %>
-          <a class="nav-link text-light" href="#"><%= current_user.first_name %></a>
+        <% if logged_in? %>
+          <%= link_to 'Sign out', sessions_path, method: :delete, class: 'nav-link text-light' %>
         <% else %>
           <%= link_to 'Sign up', new_users_path, class: 'nav-link text-light' %>
         <% end %>
