@@ -42,7 +42,7 @@ RSpec.feature 'Users', type: :feature do
 
     scenario 'expect to update current user' do
       user = login
-      visit edit_user_path(user)
+      visit edit_user_path
 
       first_name = Faker::Name.first_name
       fill_in 'user_first_name', with: first_name
@@ -50,6 +50,12 @@ RSpec.feature 'Users', type: :feature do
       find(".submit-user-edit").click
 
       expect(User.last.first_name).to eq(first_name)
+    end
+
+    scenario 'expect to redirect if no user connected' do
+      visit edit_user_path
+
+      expect(page).to have_current_path(new_users_path)
     end
   end
 end

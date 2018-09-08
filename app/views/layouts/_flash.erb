@@ -1,0 +1,9 @@
+<% flash.each do |key, messages| %>
+  <div class="alert alert-<%= key %> m-3" role="alert">
+    <ul class="m-0">
+      <% messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
