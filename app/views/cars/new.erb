@@ -1,0 +1,58 @@
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <div class="card">
+      <h5 class="card-header">Register your car</h5>
+      <div class="card-body">
+        <%= form_for @car do |f| %>
+          <div class="row form-group">
+            <div class="col">
+            <label>Year</label>
+              <%= f.select :year, years_select_option, {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+            <div class="col">
+              <label>Brand</label>
+              <%= f.select :brand, enums_to_select_option(Car.brands), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+            <label>Model</label>
+              <%= f.select :model, enums_to_select_option(Car.models), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+            <div class="col">
+              <label>Energy</label>
+              <%= f.select :energy, enums_to_select_option(Car.energies), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+            <label>Number of doors</label>
+              <%= f.select :doors, [3,5], {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+            <div class="col">
+              <label>Transmission</label>
+              <%= f.select :transmission, enums_to_select_option(Car.transmissions), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+            <label>Category</label>
+              <%= f.select :category, enums_to_select_option(Car.categories), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+            <div class="col">
+              <label>Mileage</label>
+              <%= f.select :mileage, enums_to_select_option(Car.mileages), {}, {class: 'form-control', placeholder: 'Brand'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.number_field :price, class: 'form-control', placeholder: 'Price' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_area :description, class: 'form-control', placeholder: 'Describe your car' %>
+          </div>
+          <%= f.submit 'Register', class: 'btn btn-primary submit-new-car' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

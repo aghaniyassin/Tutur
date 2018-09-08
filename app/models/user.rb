@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
   validates :first_name, length: { minimum: 3 }
   validates :last_name, length: { minimum: 2 }
+  has_many :cars
 end
