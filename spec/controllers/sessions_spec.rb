@@ -11,4 +11,16 @@ RSpec.describe SessionsController do
       expect(assigns(:current_user)).to be_falsy
     end
   end
+
+  describe 'POST /sessions' do
+    it 'expect to sign int' do
+      user_params = FactoryBot.attributes_for(:user)
+      user = User.create user_params
+
+      expect(assigns(:current_user)).to be_falsy
+
+      post :create, params: { session: { email: user_params[:email], password: user_params[:password] } }
+      expect(assigns(:current_user)).to eq(user)
+    end
+  end
 end
