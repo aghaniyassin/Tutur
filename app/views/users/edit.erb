@@ -1,9 +1,9 @@
 <div class="row justify-content-md-center">
   <div class="col-6">
     <div class="card">
-      <h5 class="card-header">Sign up</h5>
+      <h5 class="card-header">Edit profile</h5>
       <div class="card-body">
-        <%= form_for @user do |f| %>
+        <%= form_for current_user do |f| %>
           <div class="row form-group">
             <div class="col">
               <%= f.text_field :first_name, class: 'form-control', placeholder: 'First name' %>
@@ -18,9 +18,8 @@
           <div class="form-group">
             <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
           </div>
-          <%= f.submit 'Create account', class: 'btn btn-primary submit-new-user' %>
+          <%= f.submit 'Update', class: 'btn btn-primary submit-user-edit' %>
         <% end %>
-
       </div>
     </div>
   </div>
