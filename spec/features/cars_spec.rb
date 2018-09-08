@@ -18,7 +18,7 @@ RSpec.feature 'Cars', type: :feature do
 
     scenario 'expect to sign up' do
       login
-      visit new_cars_path
+      visit new_car_path
 
       car_params = FactoryBot.attributes_for(:car)
 
@@ -38,7 +38,6 @@ RSpec.feature 'Cars', type: :feature do
 
 
       find(".submit-new-car").click
-
       car = Car.last
 
       attributes = attributes_by_field.map {|a, b| b}.flatten
@@ -46,7 +45,21 @@ RSpec.feature 'Cars', type: :feature do
       attributes.each do |attribute|
         expect(car[attribute]).to eq(car_params[attribute])
       end
-      #expect(car.year).to eq(car_params[:year])
+    end
+  end
+
+  describe 'GET /cars/:id' do
+
+    scenario 'expect to show car page' do
+      user = FactoryBot.create(:user)
+      car = user.cars.build
+      car.update_attributes FactoryBot.attributes_for(:car)
+
+      visit car_path(car)
+
+      expect(page).to have_content(car.year)
+      expect(page).to have_content(car.brand.humanize)
+      expect(page).to have_content(car.model.humanize)
     end
   end
 end

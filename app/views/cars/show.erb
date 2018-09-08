@@ -1,0 +1,52 @@
+<div class="row justify-content-md-center">
+  <div class="col-7">
+    <div class="card">
+      <h5 class="card-header"><%= @car.title %></h5>
+      <img class="card-img-top" src="https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440" alt="Card image cap">
+      <div class="card-body m-3">
+        <table class="table table-striped rounded border">
+          <tbody>
+            <tr>
+              <td>Brand</td>
+              <td class="text-right"><%= @car.brand.humanize %></td>
+              <td>Model</td>
+              <td class="text-right"><%= @car.model.humanize %></td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td class="text-right"><%= @car.category.humanize %></td>
+              <td>Doors</td>
+              <td class="text-right"><%= @car.doors %></td>
+            </tr>
+            <tr>
+              <td>Energy</td>
+              <td class="text-right"><%= @car.energy.humanize %></td>
+              <td>Mileage</td>
+              <td class="text-right"><%= @car.mileage %> km</td>
+            </tr>
+            <tr>
+              <td>Transmission</td>
+              <td class="text-right"><%= @car.transmission.humanize %></td>
+              <td>Year</td>
+              <td class="text-right"><%= @car.year %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="my-4">
+          <h3>Description</h3>
+          <p><%= @car.description %></p>
+        </div>
+
+        <div class="media p-3 border rounded">
+          <img class="mr-3 rounded-circle" src="https://ouicar.s3-eu-west-1.amazonaws.com/uploads/thumb/24681/2468036.jpg">
+          <div class="media-body">
+            <h5 class="mt-0"><%= @car.user.first_name %></h5>
+            <p><%= truncate @car.user.description, length: 50 %></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

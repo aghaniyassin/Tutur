@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resource :users, only: [:new, :create]
   resource :sessions, only: [:destroy, :create, :new]
   resource :user, only: [:edit, :update]
-  resource :cars, only: [:new, :create] 
+  resources :cars, only: [:new, :create, :show]
 end
