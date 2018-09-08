@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CarsController do
+  render_views
   let(:car) { FactoryBot.create(:car) }
   let(:user) { FactoryBot.create(:user) }
   let(:car_params) { FactoryBot.attributes_for(:car) }
@@ -30,6 +31,18 @@ RSpec.describe CarsController do
 
       car.reload
       expect(car.attributes.symbolize_keys).to include(car_params)
+    end
+  end
+
+  describe 'GET /cars' do
+    it 'expect to show carc' do
+      cars = FactoryBot.create_list(:car, 10)
+
+      get :index
+
+      cars.each do |car|
+        expect(response.body).to have_content(car.title)
+      end
     end
   end
 end

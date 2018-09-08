@@ -36,6 +36,10 @@ class CarsController < ApplicationController
     end
   end
 
+  def index
+    @cars = Car.last 20
+  end
+
   private
   def car_params
     params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
