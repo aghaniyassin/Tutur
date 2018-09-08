@@ -18,5 +18,6 @@ FactoryBot.define do
     sequence(:description)  { Faker::Lorem.paragraph  }
     sequence(:price)        { rand(10..100)  }
     sequence(:doors)        { [3,5].sample  }
+    user
   end
 end
