@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   resource :users, only: [:new, :create]
   resource :sessions, only: [:destroy, :create, :new]
-  resource :user, only: [:edit, :update]
+  resource :user, only: [:edit, :update] do
+    resources :cars, only: [:index], controller: 'users/cars'
+  end
   resources :cars, only: [:new, :create, :show, :edit, :update, :index]
 end
