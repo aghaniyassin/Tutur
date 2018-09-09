@@ -35,7 +35,7 @@ RSpec.describe CarsController do
   end
 
   describe 'GET /cars' do
-    it 'expect to show carc' do
+    it 'expect to show cars' do
       cars = FactoryBot.create_list(:car, 10)
 
       get :index
@@ -43,6 +43,18 @@ RSpec.describe CarsController do
       cars.each do |car|
         expect(response.body).to have_link(href: car_path(car))
       end
+    end
+  end
+
+  describe 'GET /cars' do
+    it 'expect to renders Renault cars' do
+      cars = FactoryBot.create_list(:car, 10)
+      brand = 'renault'
+
+      get :index, params: {car: {brand: brand }}
+      renault_cars = cars.select { |c| c[:brand] == brand }
+
+      expect(assigns(:cars).size).to eq(renault_cars.size)
     end
   end
 end

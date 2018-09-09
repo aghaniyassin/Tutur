@@ -1,4 +1,8 @@
 <div class="row">
+  <%= render 'search' %>
+</div>
+
+<div class="row">
   <% @cars.each do |car| %>
   <div class="col-3">
     <%= link_to car do %>

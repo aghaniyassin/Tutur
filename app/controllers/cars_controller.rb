@@ -37,13 +37,17 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars= Car.page(params[:page]).per(12)
+    # @cars = (car_params ? Car.where(car_params) : Car)
+    #          .page(params[:page]).per(12)
+    @cars = Car.where(car_params || {}).page(params[:page]).per(12)
   end
 
   private
   def car_params
-    params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
-                                :transmission, :category, :mileage, :price, :description)
+    if params.has_key?(:car)
+      params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
+                                  :transmission, :category, :mileage, :price, :description).reject{|_, v| v.blank?}
+    end
   end
 
   def find_current_user_car
