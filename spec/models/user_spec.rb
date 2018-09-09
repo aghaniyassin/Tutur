@@ -4,8 +4,7 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
 
   it "expect to have a unique email" do
-    invalid_user = FactoryBot.build(:user)
-    invalid_user.email = user.email
+    invalid_user = FactoryBot.build(:user, email: user.email)
 
     expect(invalid_user).to be_invalid
   end
@@ -34,15 +33,13 @@ RSpec.describe User, type: :model do
   end
 
   it "expect to have a first name" do
-    invalid_user = FactoryBot.build(:user)
-    invalid_user.first_name = ''
+    invalid_user = FactoryBot.build(:user, first_name: '')
 
     expect(invalid_user).to be_invalid
   end
 
   it "expect to have a last name" do
-    invalid_user = FactoryBot.build(:user)
-    invalid_user.last_name = ''
+    invalid_user = FactoryBot.build(:user, last_name: '')
 
     expect(invalid_user).to be_invalid
   end

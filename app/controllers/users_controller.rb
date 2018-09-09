@@ -21,10 +21,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    unless current_user.update_attributes user_params
-      current_user.errors.full_messages.map { |m| flash_message :danger, m }
-    else
+    if current_user.update_attributes user_params
       flash_message :success, 'Profile updated'
+    else
+      current_user.errors.full_messages.map { |m| flash_message :danger, m }
     end
 
     render :edit
