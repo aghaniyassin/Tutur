@@ -41,7 +41,7 @@ RSpec.describe CarsController do
       get :index
 
       cars.each do |car|
-        expect(response.body).to have_content(car.title)
+        expect(response.body).to have_link(href: car_path(car))
       end
     end
   end

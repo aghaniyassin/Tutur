@@ -37,7 +37,7 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.last 20
+    @cars= Car.page(params[:page]).per(12)
   end
 
   private
