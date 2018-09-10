@@ -35,7 +35,7 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.where(car_params || {}).page(params[:page]).per(12)
+    @cars = Car.available_between(date_params).where(car_params).page(params[:page]).per(12)
     @car = Car.new
     @car.rentals.build
   end
@@ -45,6 +45,22 @@ class CarsController < ApplicationController
     if params.has_key?(:car)
       params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
                                   :transmission, :category, :mileage, :price, :description).reject{|_, v| v.blank?}
+    end
+  end
+
+  def date_params
+    if params.has_key?(:car)
+      rental_params = params.require(:car).permit(rental: [:start_at, :end_at])[:rental]
+
+      rental = Rental.new rental_params
+      return nil unless rental.start_at && rental.end_at
+
+      if rental.valid_dates?
+        rental.attributes.symbolize_keys.slice :start_at, :end_at
+      else
+        flash_message :danger, Rental::ERROR_DATE_MESSAGE
+        nil
+      end
     end
   end
 
