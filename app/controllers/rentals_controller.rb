@@ -20,6 +20,10 @@ class RentalsController < ApplicationController
     @rental = current_user.rentals.find params[:id]
   end
 
+  def index
+    @rentals = current_user.rentals.page(params[:page]).per(12)
+  end
+
   private
 
   def rental_params

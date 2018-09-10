@@ -36,4 +36,16 @@ RSpec.describe RentalsController do
     end
   end
 
+  describe 'GET /rentals' do
+    it 'expect to renders rentals' do
+      sign_in! tenant
+      rentals
+      get :index
+
+      rentals.each do |rental|
+        expect(response.body).to have_link(href: rental_path(rental))
+      end
+    end
+  end
+
 end

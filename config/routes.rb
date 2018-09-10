@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   resource :sessions, only: [:destroy, :create, :new]
   resource :user, only: [:edit, :update] do
     resources :cars, only: [:index], controller: 'users/cars'
+    resources :rentals, only: [:index], controller: 'users/rentals'
   end
   resources :cars, only: [:new, :create, :show, :edit, :update, :index] do
     resources :rentals, only: [:new, :create]
   end
-  resources :rentals, only: [:show]
+  resources :rentals, only: [:show, :index]
 end

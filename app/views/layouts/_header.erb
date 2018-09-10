@@ -8,8 +8,10 @@
       <li class="nav-item"><%= link_to 'Cars', cars_path, class: 'nav-link text-light' %></li>
       <% if logged_in? %>
         <li class="nav-item"><%= link_to 'Rent my car', new_car_path, class: 'nav-link text-light' %></li>
+        <li class="nav-item"><%= link_to 'My rentals', rentals_path, class: 'nav-link text-light' %></li>
         <% if current_user.cars %>
           <li class="nav-item"><%= link_to 'My cars', user_cars_path, class: 'nav-link text-light' %></li>
+          <li class="nav-item"><%= link_to 'Rentals of my cars', user_rentals_path, class: 'nav-link text-light' %></li>
         <% end %>
         <li class="nav-item"><%= link_to 'Edit profile', edit_user_path, class: 'nav-link text-light' %></li>
         <li class="nav-item"><%= link_to 'Sign out', sessions_path, method: :delete, class: 'nav-link text-light' %></li>

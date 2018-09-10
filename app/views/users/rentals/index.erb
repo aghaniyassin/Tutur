@@ -1,0 +1,22 @@
+<div class="row">
+  <% @rentals.each do |rental| %>
+  <div class="col-3 my-3">
+    <%= link_to rental do %>
+      <div class="card">
+        <h5 class="card-header"><%= rental.car.title %></h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Form: <%= rental.start_at %></li>
+          <li class="list-group-item">To: <%= rental.end_at %></li>
+          <li class="list-group-item">Price: <%= rental.amount %>$</li>
+        </ul>
+      </div>
+      <% end %>
+  </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="mx-auto my-3">
+    <%= paginate @rentals, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
