@@ -1,4 +1,5 @@
 module SessionsHelper
+
   def signed_in_user?
     unless logged_in?
       flash_message :danger, 'Please sign up or sign in'

@@ -1,14 +1,12 @@
 class CarsController < ApplicationController
   before_action :signed_in_user?, only: [:new, :create, :edit, :update, :delete]
   before_action :find_current_user_car, only: [:edit, :update]
-  #before_action :redirect_if_not_owner!, only: [:update]
 
   def new
     @car = current_user.cars.build
   end
 
   def create
-
     @car = current_user.cars.build car_params
     if @car.save
       flash_message :success, "Congratulations #{current_user.first_name}, you have register your car!"

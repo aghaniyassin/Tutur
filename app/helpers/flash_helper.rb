@@ -1,4 +1,5 @@
 module FlashHelper
+
   def flash_message(category, message)
     flash[category] ||= []
     flash[category] << message
