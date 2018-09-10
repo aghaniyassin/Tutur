@@ -1,0 +1,19 @@
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <div class="card">
+      <h5 class="card-header">Rental description</h5>
+      <div class="card-body">
+        <h5 class="card-title"><%= @rental.car.title %></h5>
+        <p class="card-text"><%= @rental.car.description %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Form: <%= @rental.start_at %></li>
+        <li class="list-group-item">To: <%= @rental.end_at %></li>
+        <li class="list-group-item">Price: <%= @rental.amount %>$</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link btn btn-primary">Card link</a>
+      </div>
+    </div>
+  </div>
+</div>

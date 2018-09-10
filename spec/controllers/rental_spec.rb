@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe RentalsController do
   render_views
-  let(:owner) { FactoryBot.create(:user) }
-  let(:tenant) { FactoryBot.create(:user) }
-  let(:car) { FactoryBot.create(:car, user: owner) }
+  let(:owner)         { FactoryBot.create(:user) }
+  let(:tenant)        { FactoryBot.create(:user) }
+  let(:car)           { FactoryBot.create(:car, user: owner) }
   let(:rental_params) { FactoryBot.attributes_for(:rental) }
+  let(:rentals)       { FactoryBot.create_list(:rental, 5, car: car, user: tenant) }
+  let(:rental)        { rentals.sample }
 
   describe 'SHOW /rental' do
     it 'expect to show rental page' do
@@ -24,4 +26,14 @@ RSpec.describe RentalsController do
       end.to change(Rental, :count).by(1)
     end
   end
+
+  describe 'GET /rentals/:id' do
+    it 'expect to show rental' do
+      sign_in! tenant
+      get :show, params: { id: rental.id }
+
+      expect(response).to render_template('rentals/show')
+    end
+  end
+
 end

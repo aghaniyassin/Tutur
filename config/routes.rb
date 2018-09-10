@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :cars, only: [:new, :create, :show, :edit, :update, :index] do
     resources :rentals, only: [:new, :create]
   end
+  resources :rentals, only: [:show]
 end
