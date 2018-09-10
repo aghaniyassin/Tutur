@@ -20,4 +20,11 @@ FactoryBot.define do
     sequence(:doors)        { [3,5].sample  }
     user
   end
+
+  factory :rental do
+    sequence(:start_at)        { rand(1..10).day.since }
+    sequence(:end_at)          { rand(10..20).day.since }
+    car
+    user
+  end
 end

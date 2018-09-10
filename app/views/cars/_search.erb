@@ -1,15 +1,25 @@
-<%= form_for Car.new, url: cars_path, method: :get do |f| %>
+<%= form_for @car, url: cars_path, method: :get do |f| %>
     <div class="form-row align-items-center">
+      <%= f.fields_for :rental  do |ff| %>
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only">Start at</label>
+          <%= ff.date_field :start_at, {class: 'form-control custom-select'} %>
+        </div>
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only">Start at</label>
+          <%= ff.date_field :end_at, {class: 'form-control custom-select'} %>
+        </div>
+      <% end %>
       <div class="col-auto my-1">
-        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+        <label class="mr-sm-2 sr-only">Preference</label>
         <%= f.select :brand, enums_to_select_option(Car.brands, placeholder: 'Brand'), {}, {class: 'form-control custom-select', placeholder: 'Brand'} %>
       </div>
       <div class="col-auto my-1">
-        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+        <label class="mr-sm-2 sr-only">Preference</label>
         <%= f.select :model, enums_to_select_option(Car.models, placeholder: 'Models'), {}, {class: 'form-control custom-select', placeholder: 'Brand'} %>
       </div>
       <div class="col-auto my-1">
-        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+        <label class="mr-sm-2 sr-only">Preference</label>
         <%= f.select :year, years_select_option(placeholder: 'Year'), {}, {class: 'form-control custom-select', placeholder: 'Brand'} %>
       </div>
       <div class="col-auto my-1">

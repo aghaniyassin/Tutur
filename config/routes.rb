@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resource :user, only: [:edit, :update] do
     resources :cars, only: [:index], controller: 'users/cars'
   end
-  resources :cars, only: [:new, :create, :show, :edit, :update, :index]
+  resources :cars, only: [:new, :create, :show, :edit, :update, :index] do
+    resources :rentals, only: [:new, :create]
+  end
 end

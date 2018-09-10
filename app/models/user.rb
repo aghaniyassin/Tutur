@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :first_name, length: { minimum: 3 }
   validates :last_name, length: { minimum: 2 }
   has_many :cars
+  has_many :rentals
 end

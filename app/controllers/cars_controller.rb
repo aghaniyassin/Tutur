@@ -37,9 +37,9 @@ class CarsController < ApplicationController
   end
 
   def index
-    # @cars = (car_params ? Car.where(car_params) : Car)
-    #          .page(params[:page]).per(12)
     @cars = Car.where(car_params || {}).page(params[:page]).per(12)
+    @car = Car.new
+    @car.rentals.build
   end
 
   private

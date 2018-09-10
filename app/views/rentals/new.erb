@@ -1,0 +1,23 @@
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <div class="card">
+      <h5 class="card-header">Rental of <%= @rental.car.title %></h5>
+      <div class="card-body">
+        <%= form_for [@rental.car, @rental] do |f| %>
+          <div class="row form-group">
+            <div class="col">
+            <label>Start at</label>
+              <%= f.date_field :start_at, class: 'form-control' %>
+            </div>
+            <div class="col">
+              <label>End at</label>
+              <%= f.date_field :end_at, class: 'form-control' %>
+            </div>
+          </div>
+          <h5>Price: <%= @rental.amount %>$</h5>
+          <%= f.submit 'Submit', class: 'btn btn-primary mt-2' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

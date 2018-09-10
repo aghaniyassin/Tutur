@@ -1,5 +1,7 @@
 class Car < ApplicationRecord
   belongs_to :user
+  has_many :rentals
+  accepts_nested_attributes_for :rentals
   enum brand: [:renault, :peugeot, :citroen, :fiat]
   enum model: [:clio, :megane, :punto, :boxer, :picasso]
   enum energy: [:gasoline, :diesel, :electric, :autogas]
