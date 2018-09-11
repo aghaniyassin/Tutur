@@ -1,0 +1,15 @@
+<div class="card">
+  <%= image_tag url_for(rental.car.image_url), class: 'card-img-top' %>
+  <div class="card-body">
+    <h4 class="text-center mb-3"><%= rental.amount %>$ for <%= rental.days %> days</h4>
+    <h3>
+      <% case rental.status when nil %>
+        <span class="badge badge-warning w-100">Pending</span>
+      <% when true %>
+        <span class="badge badge-success w-100">Accepted</span>
+      <% when false %>
+        <span class="badge badge-danger w-100">Rejected</span>
+      <% end %>
+    </h3>
+  </div>
+</div>

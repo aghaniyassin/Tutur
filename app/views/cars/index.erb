@@ -1,24 +1,13 @@
 <div class="row">
-  <%= render 'search' %>
+  <%= render 'cars/partials/search' %>
 </div>
 
 <div class="row">
   <% @cars.each do |car| %>
-  <div class="col-3">
-    <%= link_to car do %>
-      <div class="card my-3">
-        <img class="card-img-top" src="https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-title"><%= car.title %></p>
-        </div>
-      </div>
-      <% end %>
-  </div>
+    <div class="col-3">
+      <%= link_to car do %><%= render 'cars/partials/preview', car: car %><% end %>
+    </div>
   <% end %>
 </div>
 
-<div class="row">
-  <div class="mx-auto my-3">
-    <%= paginate @cars, theme: 'twitter-bootstrap-4' %>
-  </div>
-</div>
+<%= render 'layouts/paginate', collection: @cars %>

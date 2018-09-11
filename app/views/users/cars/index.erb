@@ -1,22 +1,19 @@
 <h2>Your cars</h2>
+<hr>
 
-<div class="row">
-  <% @cars.each do |car| %>
-  <div class="col-3">
-    <%= link_to edit_car_path(car) do %>
-      <div class="card my-3">
-        <img class="card-img-top" src="https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-title"><%= car.title %></p>
-        </div>
+<% if @cars %>
+  <div class="row">
+    <% @cars.each do |car| %>
+      <div class="col-3">
+        <%= link_to edit_car_path(car)  do %><%= render 'cars/partials/preview', car: car %><% end %>
       </div>
-      <% end %>
+    <% end %>
   </div>
-  <% end %>
-</div>
 
-<div class="row">
-  <div class="mx-auto my-3">
-    <%= paginate @cars, theme: 'twitter-bootstrap-4' %>
+  <%= render 'layouts/paginate', collection: @cars %>
+<% else %>
+  <div class="alert alert-primary p-4" role="alert">
+    <h5>You don't rent your car yet but you can do it by clicking here:</h5>
+    <%= link_to 'Rent my car', new_car_path, class: 'btn btn-primary' %>
   </div>
-</div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="col-3">
+  <div class="card">
+    <%= image_tag url_for(car.image_url), class: 'card-img-top' %>
+    <div class="card-body">
+      <h4 class="text-center mb-3"><%= car.price %>$ per day</h4>
+
+      <%= link_to 'Rent', new_car_rental_path(car), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+</div>

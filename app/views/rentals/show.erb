@@ -1,26 +1,21 @@
 <div class="row justify-content-md-center">
-  <div class="col-6">
+  <div class="col-3">
+    <%= render 'rentals/partials/thumbnail', rental: @rental %>
+  </div>
+  <div class="col-7">
     <div class="card">
-      <h5 class="card-header">Rental description</h5>
+      <h5 class="card-header"><%= @rental.car.title %></h5>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Car: <%= @rental.car.title %></li>
-        <li class="list-group-item">
-          Status:
-          <% case @rental.status when nil %>
-              <span class="badge badge-secondary">Pending</span>
-            <% when true %>
-              <span class="badge badge-success">Accepted</span>
-            <% when false %>
-              <span class="badge badge-success">Rejected</span>
-            <% end %>
-        </li>
-        <li class="list-group-item">Form: <%= @rental.start_at %></li>
-        <li class="list-group-item">To: <%= @rental.end_at %></li>
+        <li class="list-group-item">Form: <%= @rental.start_at.strftime("%B %d, %Y") %></li>
+        <li class="list-group-item">To: <%= @rental.end_at.strftime("%B %d, %Y") %></li>
         <li class="list-group-item">Price: <%= @rental.amount %>$</li>
       </ul>
-      <div class="card-body">
-        <h5 class="card-title"><%= @rental.car.title %></h5>
-        <p class="card-text"><%= @rental.car.description %></p>
+      <div class="card-body mb-4">
+        <div class="mt-2 mb-4">
+          <p><%= @rental.car.description %></p>
+        </div>
+        <%= render 'cars/partials/technical_spec', car: @rental.car %>
+        <%= render 'users/partials/owner_overview', owner: @rental.car.user %>
       </div>
     </div>
   </div>

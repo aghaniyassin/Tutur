@@ -7,6 +7,7 @@ FactoryBot.define do
 
     sequence(:email)      { Faker::Internet.email }
     sequence(:password)   { Faker::Lorem.characters(6) }
+    sequence(:description)   { Faker::Lorem.characters(6) }
   end
 
   factory :car do

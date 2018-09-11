@@ -33,6 +33,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password).reject{|_, v| v.blank?}
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :description).reject{|_, v| v.blank?}
   end
 end

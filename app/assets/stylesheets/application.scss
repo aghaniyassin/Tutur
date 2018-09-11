@@ -19,4 +19,6 @@
 
  */
 
-a { color: inherit; } 
+a, a:visited, a:hover {
+  text-decoration: none
+}

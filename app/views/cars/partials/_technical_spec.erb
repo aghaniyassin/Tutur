@@ -1,0 +1,28 @@
+<table class="table table-striped rounded border">
+  <tbody>
+    <tr>
+      <td>Brand</td>
+      <td class="text-right"><%= car.brand.humanize %></td>
+      <td>Model</td>
+      <td class="text-right"><%= car.model.humanize %></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td class="text-right"><%= car.category.humanize %></td>
+      <td>Doors</td>
+      <td class="text-right"><%= car.doors %></td>
+    </tr>
+    <tr>
+      <td>Energy</td>
+      <td class="text-right"><%= car.energy.humanize %></td>
+      <td>Mileage</td>
+      <td class="text-right"><%= car.mileage %> km</td>
+    </tr>
+    <tr>
+      <td>Transmission</td>
+      <td class="text-right"><%= car.transmission.humanize %></td>
+      <td>Year</td>
+      <td class="text-right"><%= car.year %></td>
+    </tr>
+  </tbody>
+</table>

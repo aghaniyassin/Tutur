@@ -9,7 +9,7 @@ class Rental < ApplicationRecord
   belongs_to :car
 
   def compute_amount
-    self.amount = ((self.end_at - self.start_at) / 1.day).to_i * car.price
+    self.amount = days * car.price
   end
 
   def start_at_in_future
@@ -26,5 +26,9 @@ class Rental < ApplicationRecord
 
   def valid_dates
     errors.add :start_at, ERROR_DATE_MESSAGE unless valid_dates?
+  end
+
+  def days
+    ((end_at - start_at) / 1.day).to_i if end_at && start_at
   end
 end

@@ -1,0 +1,21 @@
+<div class="card">
+  <%= image_tag url_for(rental.car.image_url), class: 'card-img-top' %>
+  <div class="card-body">
+    <h4 class="text-center mb-3"><%= rental.amount %>$ for <%= rental.days %> days</h4>
+    <h3>
+      <%= form_for [:user, @rental] do |f| %>
+
+          <% case @rental.status when nil %>
+            <%= f.submit 'Decline', class: "btn btn-danger btn-block"%>
+            <%= f.submit 'Accept', class: "btn btn-success btn-block"%>
+          <% when true %>
+            <%= f.submit 'Decline', class: "btn btn-danger btn-block"%>
+          <% when false %>
+            <%= f.submit 'Accept', class: "btn btn-success btn-block"%>
+          <% end %>
+
+        <%= f.hidden_field :status, value: !@rental.status %>
+      <% end %>
+    </h3>
+  </div>
+</div>

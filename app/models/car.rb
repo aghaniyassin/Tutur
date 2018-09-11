@@ -41,6 +41,10 @@ class Car < ApplicationRecord
     "#{self.brand.humanize} #{self.model.humanize}"
   end
 
+  def public_price
+    "#{price}$"
+  end
+
   scope :available_between, -> (desired_dates) do
     if desired_dates
       left_outer_joins(:rentals).where('"rentals"."status" IS NOT TRUE
