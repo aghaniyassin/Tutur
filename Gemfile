@@ -41,6 +41,7 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'geocoder'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

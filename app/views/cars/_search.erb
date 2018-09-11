@@ -12,6 +12,14 @@
       <% end %>
       <div class="col-auto my-1">
         <label class="mr-sm-2 sr-only">Preference</label>
+        <%= f.text_field :address, {class: 'form-control', placeholder: 'City'} %>
+      </div>
+      <div class="col-auto my-1">
+        <label class="mr-sm-2 sr-only">Preference</label>
+        <%= f.select :radius, [2, 5, 10, 20], {}, {class: 'form-control custom-select', placeholder: 'Brand'} %>
+      </div>
+      <div class="col-auto my-1">
+        <label class="mr-sm-2 sr-only">Preference</label>
         <%= f.select :brand, enums_to_select_option(Car.brands, placeholder: 'Brand'), {}, {class: 'form-control custom-select', placeholder: 'Brand'} %>
       </div>
       <div class="col-auto my-1">

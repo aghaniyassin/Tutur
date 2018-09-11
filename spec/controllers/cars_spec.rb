@@ -30,9 +30,15 @@ RSpec.describe CarsController do
   describe 'PATCH /cars/:id' do
     it 'expect to update car' do
       sign_in! car.user
+
+      stub = Car.new car_params
+      stub.assign_attributes latitude: car.latitude, longitude: car.longitude
+      Helpers.stub_with(stub)
+
       patch :update, params: { id: car.id, car: car_params }
 
       car.reload
+      car_params.except! :latitude, :longitude
       expect(car.attributes.symbolize_keys).to include(car_params)
     end
   end
@@ -84,6 +90,20 @@ RSpec.describe CarsController do
       get :index, params: { car: { rental: { start_at: 1.day.since, end_at: 10.day.since }}}
 
       expect(assigns(:cars).size).to eq(9)
+    end
+  end
+
+  describe 'GET /cars' do
+    it 'expect to renders cars near Paris' do
+      cars = ['Paris', 'Lyon', 'Lille'].map do |city|
+        car = FactoryBot.create(:car, user: owner, city: city)
+        Helpers.stub_with(car)
+        car
+      end
+
+      get :index, params: { car: { address: cars.first.address }}
+
+      expect(assigns(:cars).size).to eq(1)
     end
   end
 

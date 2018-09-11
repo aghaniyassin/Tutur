@@ -91,6 +91,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     formatador (0.2.5)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -289,6 +290,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_bot_rails
   faker
+  geocoder
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails

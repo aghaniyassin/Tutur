@@ -35,7 +35,10 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.available_between(date_params)
+    if location_params.try(:has_key?, :address)
+      @cars = Car.near(location_params[:address], location_params[:radius] || 5)
+    end
+    @cars = (@cars || Car).available_between(date_params)
                .where(car_params).page(params[:page]).per(12)
     @car = Car.new
     @car.rentals.build
@@ -45,7 +48,14 @@ class CarsController < ApplicationController
   def car_params
     if params.has_key?(:car)
       params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
-                                  :transmission, :category, :mileage, :price, :description).reject{|_, v| v.blank?}
+                                  :transmission, :category, :mileage, :price, :description,
+                                  :street, :city, :postal_code).reject{|_, v| v.blank?}
+    end
+  end
+
+  def location_params
+    if params.has_key?(:car)
+      params.require(:car).permit(:address, :radius).reject{|_, v| v.blank?}
     end
   end
 

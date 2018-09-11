@@ -9,10 +9,24 @@ class Car < ApplicationRecord
                     .map {|x| "#{x}-#{x + MILEAGE_STEP}"}
 
   validates :description, length: { minimum: 20 }
+  validates :brand, inclusion: { in: brands.keys }
+  validates :model, inclusion: { in: models.keys }
+  validates :price, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
+  validates :postal_code, presence: true
 
   belongs_to :user
   has_many :rentals
   accepts_nested_attributes_for :rentals
+
+  geocoded_by :address
+  after_validation :geocode
+  attr_accessor :radius
+
+  def address
+    [street, city, postal_code, country].compact.join(', ')
+  end
 
   def title
     "#{self.brand.humanize} #{self.model.humanize}"
