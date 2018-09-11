@@ -1,7 +1,7 @@
 <div class="row">
   <% @rentals.each do |rental| %>
   <div class="col-3 my-3">
-    <%= link_to rental do %>
+    <%= link_to user_rental_path(rental) do %>
       <div class="card">
         <h5 class="card-header"><%= rental.car.title %></h5>
         <ul class="list-group list-group-flush">

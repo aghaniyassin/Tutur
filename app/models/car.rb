@@ -20,8 +20,9 @@ class Car < ApplicationRecord
 
   scope :available_between, -> (desired_dates) do
     if desired_dates
-      left_outer_joins(:rentals).where('(:desired_start < start_at AND :desired_end < start_at)
-                                        OR (end_at < :desired_start AND end_at < :desired_end)',
+      left_outer_joins(:rentals).where('"rentals"."status" IS NOT TRUE
+                                        OR ((:desired_start < start_at AND :desired_end < start_at)
+                                            OR (end_at < :desired_start AND end_at < :desired_end))',
                                         {desired_start: desired_dates[:start_at], desired_end: desired_dates[:end_at]})
     end
   end

@@ -35,7 +35,8 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.available_between(date_params).where(car_params).page(params[:page]).per(12)
+    @cars = Car.available_between(date_params)
+               .where(car_params).page(params[:page]).per(12)
     @car = Car.new
     @car.rentals.build
   end

@@ -2,17 +2,25 @@
   <div class="col-6">
     <div class="card">
       <h5 class="card-header">Rental description</h5>
-      <div class="card-body">
-        <h5 class="card-title"><%= @rental.car.title %></h5>
-        <p class="card-text"><%= @rental.car.description %></p>
-      </div>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item">Car: <%= @rental.car.title %></li>
+        <li class="list-group-item">
+          Status:
+          <% case @rental.status when nil %>
+              <span class="badge badge-secondary">Pending</span>
+            <% when true %>
+              <span class="badge badge-success">Accepted</span>
+            <% when false %>
+              <span class="badge badge-success">Rejected</span>
+            <% end %>
+        </li>
         <li class="list-group-item">Form: <%= @rental.start_at %></li>
         <li class="list-group-item">To: <%= @rental.end_at %></li>
         <li class="list-group-item">Price: <%= @rental.amount %>$</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link btn btn-primary">Card link</a>
+        <h5 class="card-title"><%= @rental.car.title %></h5>
+        <p class="card-text"><%= @rental.car.description %></p>
       </div>
     </div>
   </div>

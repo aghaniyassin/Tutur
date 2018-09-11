@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   has_many :cars
   has_many :rentals
-  
+
   before_save { self.email = email.downcase }
+
+  def cars_rentals
+    Rental.joins(:car).where('cars.user_id = ?', self.id)
+  end
 end

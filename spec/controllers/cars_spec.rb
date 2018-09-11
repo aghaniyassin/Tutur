@@ -64,7 +64,7 @@ RSpec.describe CarsController do
   describe 'GET /cars' do
     it 'expect to renders available cars' do
       10.times do |t|
-        FactoryBot.create(:rental, car: cars[t], user: tenant, start_at: (t+1).day.since, end_at: (t+2).day.since)
+        FactoryBot.create(:rental, car: cars[t], user: tenant, start_at: (t+1).day.since, end_at: (t+2).day.since, status: true)
       end
 
       get :index, params: { car: { rental: { start_at: 5.day.since, end_at: 9.day.since }}}
@@ -72,4 +72,19 @@ RSpec.describe CarsController do
       expect(assigns(:cars).size).to eq(5)
     end
   end
+
+  describe 'GET /cars' do
+    it 'expect to renders cars with rentals not yet accepted' do
+      10.times do |t|
+        FactoryBot.create(:rental, car: cars[t], user: tenant, start_at: 1.day.since, end_at: 10.day.since)
+      end
+      rental = cars.last.rentals.last
+      rental.update_attributes status: true
+
+      get :index, params: { car: { rental: { start_at: 1.day.since, end_at: 10.day.since }}}
+
+      expect(assigns(:cars).size).to eq(9)
+    end
+  end
+
 end
