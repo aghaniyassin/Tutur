@@ -2,9 +2,8 @@
   <div class="col-7">
     <div class="card">
       <h5 class="card-header"><%= @car.title %></h5>
-      <img class="card-img-top" src="https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440" alt="Card image cap">
+      <%= image_tag url_for(@car.image_url), class: 'card-img-top' %>
       <div class="card-body m-3">
-
         <table class="table table-striped rounded border">
           <tbody>
             <tr>

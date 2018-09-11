@@ -18,11 +18,20 @@ class Car < ApplicationRecord
 
   belongs_to :user
   has_many :rentals
+  has_one_attached :image
   accepts_nested_attributes_for :rentals
 
   geocoded_by :address
   after_validation :geocode
   attr_accessor :radius
+
+  def image_url
+    if image.attached?
+      image
+    else
+      'https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440'
+    end
+  end
 
   def address
     [street, city, postal_code, country].compact.join(', ')

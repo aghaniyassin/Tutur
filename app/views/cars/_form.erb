@@ -66,6 +66,10 @@
               <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Price' %>
             </div>
           </div>
+          <div class="form-group">
+            <label>Image</label><br>
+            <%= f.file_field :image, direct_upload: true %>
+          </div>
           <%= f.submit locals[:button_name], class: 'btn btn-primary submit-car-form' %>
         <% end %>
       </div>

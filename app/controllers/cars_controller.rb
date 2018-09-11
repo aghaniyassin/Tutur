@@ -7,10 +7,11 @@ class CarsController < ApplicationController
   end
 
   def create
+
     @car = current_user.cars.build car_params
     if @car.save
       flash_message :success, "Congratulations #{current_user.first_name}, you have register your car!"
-      redirect_to root_path
+      redirect_to @car
     else
       @car.errors.full_messages.map { |m| flash_message :danger, m }
       render :new
@@ -49,7 +50,7 @@ class CarsController < ApplicationController
     if params.has_key?(:car)
       params.require(:car).permit(:year, :brand, :model, :year, :energy, :doors,
                                   :transmission, :category, :mileage, :price, :description,
-                                  :street, :city, :postal_code).reject{|_, v| v.blank?}
+                                  :street, :city, :postal_code, :image).reject{|_, v| v.blank?}
     end
   end
 

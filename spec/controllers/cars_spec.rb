@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CarsController do
+  include ActionDispatch::TestProcess
+
   render_views
   let(:car)           { FactoryBot.create(:car) }
   let(:user)          { FactoryBot.create(:user) }
@@ -107,4 +109,19 @@ RSpec.describe CarsController do
     end
   end
 
+  describe 'GET /cars' do
+    it 'expect to renders car image' do
+      stub = Car.new car_params
+      Helpers.stub_with(stub)
+
+      sign_in! user
+      path = './spec/fixtures/images/car.jpg'
+      image = Rack::Test::UploadedFile.new(path, 'application/jpeg', true)
+      car_params.merge! image: image
+
+      post :create, params: { car: car_params }
+
+      expect(assigns(:car).image.attached?).to be_truthy
+    end
+  end
 end
