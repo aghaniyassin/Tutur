@@ -6,8 +6,8 @@
     <div class="card">
       <h5 class="card-header"><%= @rental.car.title %></h5>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Form: <%= @rental.start_at.strftime("%B %d, %Y") %></li>
-        <li class="list-group-item">To: <%= @rental.end_at.strftime("%B %d, %Y") %></li>
+        <li class="list-group-item">Form: <%= datetime_humanize @rental.start_at %></li>
+        <li class="list-group-item">To: <%= datetime_humanize @rental.end_at %></li>
         <li class="list-group-item">Price: <%= @rental.amount %>$</li>
       </ul>
       <div class="card-body mb-4">

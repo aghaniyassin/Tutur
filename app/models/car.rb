@@ -29,7 +29,7 @@ class Car < ApplicationRecord
     if image.attached?
       image
     else
-      'https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg?auto=format%2Cenhance%2Ccompress&dpr=1&h=440'
+      'https://drivy.imgix.net/uploads/originals/d064f4da514ee8fb6142abb776df1e06.jpeg'
     end
   end
 
@@ -41,8 +41,12 @@ class Car < ApplicationRecord
     "#{self.brand.humanize} #{self.model.humanize}"
   end
 
-  def public_price
-    "#{price}$"
+  def humanize_price
+    "#{price}$ per day"
+  end
+
+  def last_rental
+    rentals.last
   end
 
   scope :available_between, -> (desired_dates) do
@@ -50,7 +54,7 @@ class Car < ApplicationRecord
       left_outer_joins(:rentals).where('"rentals"."status" IS NOT TRUE
                                         OR ((:desired_start < start_at AND :desired_end < start_at)
                                             OR (end_at < :desired_start AND end_at < :desired_end))',
-                                        {desired_start: desired_dates[:start_at], desired_end: desired_dates[:end_at]})
+                                        {desired_start: desired_dates[:start_at], desired_end: desired_dates[:end_at]}).group(:id)
     end
   end
 end

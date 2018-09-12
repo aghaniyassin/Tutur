@@ -9,7 +9,7 @@ RSpec.describe RentalsController do
   let(:rentals)       { FactoryBot.create_list(:rental, 5, car: car, user: tenant) }
   let(:rental)        { rentals.sample }
 
-  describe 'SHOW /rental' do
+  describe 'SHOW /rentals' do
     it 'expect to show rental page' do
       get :new, params: { car_id: car.id }
 

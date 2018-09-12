@@ -1,7 +1,7 @@
 <h2>Your rentals car's</h2>
 <hr>
 
-<% if @rentals %>
+<% if @rentals.any? %>
   <div class="row">
     <% @rentals.each do |rental| %>
       <div class="col-3">

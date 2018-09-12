@@ -3,19 +3,19 @@
     <div class="card">
       <h5 class="card-header">Rental of <%= @rental.car.title %></h5>
       <div class="card-body">
-        <%= form_for [@rental.car, @rental] do |f| %>
+        <%= form_for [@rental.car, @rental], html: { 'data-price': @rental.car.price } do |f| %>
           <div class="row form-group">
             <div class="col">
             <label>Start at</label>
-              <%= f.date_field :start_at, class: 'form-control' %>
+              <%= f.date_field :start_at, class: 'form-control', min: Time.now %>
             </div>
             <div class="col">
               <label>End at</label>
               <%= f.date_field :end_at, class: 'form-control' %>
             </div>
           </div>
-          <h5>Price: <%= @rental.amount %>$</h5>
-          <%= f.submit 'Submit', class: 'btn btn-primary mt-2' %>
+          <h5>Price: <span id="rental_price"><%= @rental.compute_amount %></span> $</h5>
+          <%= f.submit 'Confirm', class: 'btn btn-primary mt-2' %>
         <% end %>
       </div>
     </div>

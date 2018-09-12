@@ -2,14 +2,14 @@ class RentalsController < ApplicationController
   before_action :find_car, only: [:new]
 
   def new
-    @rental = @car.rentals.build
+    @rental = @car.rentals.build date_query
   end
 
   def create
     @rental = current_user.rentals.build rental_params
     if @rental.save
       flash_message :success, 'Your rental request is registered!'
-      redirect_to @rental.car
+      redirect_to @rental
     else
       @rental.errors.full_messages.map { |m| flash_message :danger, m }
       render :new
@@ -17,11 +17,15 @@ class RentalsController < ApplicationController
   end
 
   def show
-    @rental = current_user.rentals.find params[:id]
+    unless @rental = current_user.rentals.find_by(id: params[:id])
+      flash_message :danger, 'You are not authorized to do this action'
+      redirect_to root_path
+    end
   end
 
   def index
-    @rentals = current_user.rentals.page(params[:page]).per(12)
+    @rentals = current_user.rentals.order(created_at: :desc)
+                           .page(params[:page]).per(12)
   end
 
   private

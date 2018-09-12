@@ -2,7 +2,7 @@
   <%= image_tag url_for(car.image_url), class: 'card-img-top' %>
   <div class="card-footer">
     <p class="card-title m-0"><%= car.title %></p>
-    <span class="badge badge-primary"><%= car.public_price %></span>
-    <span class="badge badge-primary"><%= car.city %></span>
+    <span class="badge badge-primary"><%= car.humanize_price %></span>
+    <span class="badge badge-dark"><%= car.city %></span>
   </div>
 </div>

@@ -1,11 +1,11 @@
 <div class="card mt-3">
   <%= image_tag url_for(rental.car.image_url), class: 'card-img-top' %>
   <div class="card-footer">
-    <h4 class="card-title mb-2"><%= rental.car.title %></h4>
-    <h5>
-      <span class="badge badge-dark"><%= datetime_humanize rental.start_at %></span>
-      <span class="badge badge-dark "><%= datetime_humanize rental.end_at %></span>
-      <span class="badge badge-dark"><%= rental.amount %> $</span>
-    </h5>
+    <p class="card-title mb-2"><%= rental.car.title %></p>
+    <span class="badge badge-dark"><%= datetime_humanize rental.start_at %></span>
+    <span class="badge badge-dark"><%= datetime_humanize rental.end_at %></span>
+    <br>
+    <span class="badge badge-primary"><%= rental.amount %> $</span>
+    <span class="badge badge-<%= bootstrap_badge(rental.status) %>"><%= rental.humanize_status %></span>
   </div>
 </div>

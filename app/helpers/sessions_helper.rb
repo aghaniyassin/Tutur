@@ -6,4 +6,12 @@ module SessionsHelper
       redirect_to new_users_path
     end
   end
+
+  def date_query
+    session[:car_query].try(:[], 'rental')
+  end
+
+  def address_query
+    session[:car_query].try('address')
+  end
 end

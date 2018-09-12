@@ -8,39 +8,39 @@
               <div class="row form-group">
                 <div class="col">
                   <label>Year</label>
-                  <%= f.select :year, years_select_option, {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :year, years_select_option, {}, { class: 'form-control custom-select' } %>
                 </div>
                 <div class="col">
                   <label>Brand</label>
-                  <%= f.select :brand, enums_to_select_option(Car.brands), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :brand, enums_to_select_option(Car.brands), {}, { class: 'form-control custom-select' } %>
                 </div>
                 <div class="col">
                   <label>Model</label>
-                  <%= f.select :model, enums_to_select_option(Car.models), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :model, enums_to_select_option(Car.models), {}, { class: 'form-control custom-select' } %>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col">
                   <label>Energy</label>
-                  <%= f.select :energy, enums_to_select_option(Car.energies), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :energy, enums_to_select_option(Car.energies), {}, { class: 'form-control custom-select' } %>
                 </div>
                 <div class="col">
                   <label>Number of doors</label>
-                  <%= f.select :doors, [3,5], {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :doors, [3,5], {}, { class: 'form-control' } %>
                 </div>
                 <div class="col">
                   <label>Transmission</label>
-                  <%= f.select :transmission, enums_to_select_option(Car.transmissions), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :transmission, enums_to_select_option(Car.transmissions), {}, { class: 'form-control custom-select' } %>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col">
                   <label>Category</label>
-                  <%= f.select :category, enums_to_select_option(Car.categories), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :category, enums_to_select_option(Car.categories), {}, { class: 'form-control custom-select' } %>
                 </div>
                 <div class="col">
                   <label>Mileage</label>
-                  <%= f.select :mileage, enums_to_select_option(Car.mileages), {}, {class: 'form-control', placeholder: 'Brand'} %>
+                  <%= f.select :mileage, enums_to_select_option(Car.mileages), {}, { class: 'form-control custom-select', placeholder: 'Brand' } %>
                 </div>
                 <div class="col">
                   <label>Price</label>
@@ -53,16 +53,16 @@
                 <div class="col">
                   <div class="form-group">
                     <label>Street</label>
-                    <%= f.text_field :street, class: 'form-control', placeholder: 'Price' %>
+                    <%= f.text_field :street, class: 'form-control', placeholder: 'Street' %>
                   </div>
                 </div>
                 <div class="col">
                   <label>City</label>
-                  <%= f.text_field :city, class: 'form-control', placeholder: 'Price' %>
+                  <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
                 </div>
                 <div class="col">
                   <label>Postal code</label>
-                  <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Price' %>
+                  <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Postal code' %>
                 </div>
               </div>
             </li>

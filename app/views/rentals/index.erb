@@ -1,7 +1,7 @@
 <h2>Your rentals</h2>
 <hr>
 
-<% if @rentals %>
+<% if @rentals.any? %>
   <div class="row">
     <% @rentals.each do |rental| %>
       <div class="col-3">
@@ -13,7 +13,7 @@
   <%= render 'layouts/paginate', collection: @rentals %>
 <% else %>
   <div class="alert alert-primary p-4" role="alert">
-    <h5>You don't rent your car yet but you can do it by clicking here:</h5>
-    <%= link_to 'Rent my car', new_car_path, class: 'btn btn-primary' %>
+    <h5>You haven't rented yet but you can do it by clicking here:</h5>
+    <%= link_to 'Find a car', cars_path, class: 'btn btn-primary' %>
   </div>
 <% end %>

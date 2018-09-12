@@ -9,7 +9,7 @@ class Rental < ApplicationRecord
   belongs_to :car
 
   def compute_amount
-    self.amount = days * car.price
+    self.amount = days * car.price if days
   end
 
   def start_at_in_future
@@ -30,5 +30,15 @@ class Rental < ApplicationRecord
 
   def days
     ((end_at - start_at) / 1.day).to_i if end_at && start_at
+  end
+
+  def humanize_status
+    case status when nil
+      'Pending'
+    when true
+      'Accepted'
+    when false
+      'Rejected'
+    end
   end
 end

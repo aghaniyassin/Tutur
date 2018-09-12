@@ -124,4 +124,14 @@ RSpec.describe CarsController do
       expect(assigns(:car).image.attached?).to be_truthy
     end
   end
+
+  describe 'PATCH /cars/:id' do
+    it 'expect to redirect if user want to edit a car that belongs to another' do
+      sign_in! user
+
+      patch :update, params: { id: car.id, car: car_params }
+
+      expect(response.location).to eq(root_url)
+    end
+  end
 end

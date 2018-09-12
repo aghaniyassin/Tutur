@@ -4,31 +4,31 @@
       <%= f.fields_for :rental  do |ff| %>
       <div class="col-auto">
         <label>Start at</label>
-        <%= ff.date_field :start_at, {class: 'form-control custom-select', min: Time.now} %>
+        <%= ff.date_field :start_at, {class: 'form-control custom-select', min: Time.now, value: @rental.start_at.try(:strftime, '%Y-%m-%d') } %>
       </div>
       <div class="col-auto">
         <label>End at</label>
-        <%= ff.date_field :end_at, {class: 'form-control custom-select', min: Time.now} %>
+        <%= ff.date_field :end_at, {class: 'form-control custom-select', min: Time.now, value: @rental.end_at.try(:strftime, '%Y-%m-%d') } %>
       </div>
       <% end %>
       <div class="col-auto">
         <label>Address</label>
-        <%= f.text_field :address, {class: 'form-control', placeholder: 'Address'} %>
+        <%= f.text_field :address, {class: 'form-control', placeholder: 'Address', value: session[:car_query].try(:[], :address) } %>
       </div>
       <div class="col-auto">
         <label>Radius</label>
-        <%= f.select :radius, [2, 5, 10, 20], {}, {class: 'form-control custom-select'} %>
+        <%= f.select :radius, [2, 5, 10, 20], { selected: session[:car_query].try(:[], :radius) }, {class: 'form-control custom-select' } %>
       </div>
       <div class="col-auto">
         <label>Brand</label>
-        <%= f.select :brand, enums_to_select_option(Car.brands, placeholder: 'Brand'), {}, { class: 'form-control custom-select' } %>
+        <%= f.select :brand, enums_to_select_option(Car.brands), choices_for_select_options(selected: @car.brand), { class: 'form-control custom-select' } %>
       </div>
       <!-- <div class="col-auto">
         <label>Model</label>
-        <%= f.select :model, enums_to_select_option(Car.models, placeholder: 'Models'), {}, { class: 'form-control custom-select' } %>
+        <%= f.select :model, enums_to_select_option(Car.models), {}, { class: 'form-control custom-select' } %>
       </div>
       <div class="col-auto">
-        <%= f.select :year, years_select_option(placeholder: 'Year'), {}, { class: 'form-control custom-select' } %>
+        <%= f.select :year, years_select_option, choices_for_select_options(selected: 'Year'), { class: 'form-control custom-select' } %>
       </div> -->
       <div class="col-auto pt-1">
         <br>

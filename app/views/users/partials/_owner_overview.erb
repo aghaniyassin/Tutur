@@ -2,6 +2,6 @@
   <img class="mr-3 rounded-circle" src="https://ouicar.s3-eu-west-1.amazonaws.com/uploads/thumb/24681/2468036.jpg">
   <div class="media-body">
     <h5 class="mt-0"><%= owner.first_name %></h5>
-    <p><%= truncate owner.description, length: 50 %></p>
+    <p><%= truncate owner.description || 'Empty description', length: 50 %></p>
   </div>
 </div>
