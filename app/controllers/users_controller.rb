@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       login(user_params[:email], user_params[:password])
       flash_message :success, "Congratulations #{@user.first_name}, you have created a Tutur account!"
-      redirect_to root_path
+      redirect_back_or root_path
     else
       @user.errors.full_messages.map { |m| flash_message :danger, m }
       render :new

@@ -43,6 +43,7 @@ class CarsController < ApplicationController
         flash_message :danger, 'Unknow address'
       end
     end
+
     @cars = (@cars || Car).available_between(date_params)
                .where(car_params).page(params[:page]).per(12)
 

@@ -27,6 +27,19 @@ RSpec.describe RentalsController do
     end
   end
 
+  describe 'POST /rentals' do
+    it "expect to don't create a rental when a car is already rented" do
+      rental = FactoryBot.create(:rental, status: true, car: car, user: tenant, start_at: 5.day.since, end_at: 10.day.since)
+      sign_in! tenant
+
+      rental_params = FactoryBot.attributes_for(:rental, car_id: car.id, start_at: 6.day.since, end_at: 8.day.since)
+
+      expect do
+        post :create, params: { car_id: car.id, rental: rental_params }
+      end.to change(Rental, :count).by(0)
+    end
+  end
+
   describe 'GET /rentals/:id' do
     it 'expect to show rental' do
       sign_in! tenant

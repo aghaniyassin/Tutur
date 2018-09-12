@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController do
   render_views
-  let(:user) { FactoryBot.create(:user) }
+  let(:user)        { FactoryBot.create(:user) }
   let(:user_params) { FactoryBot.attributes_for(:user) }
 
   describe 'POST /users' do

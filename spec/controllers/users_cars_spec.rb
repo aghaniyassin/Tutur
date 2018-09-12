@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Users::CarsController do
   render_views
-  let(:car) { FactoryBot.create(:car) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:car)        { FactoryBot.create(:car) }
+  let(:user)       { FactoryBot.create(:user) }
   let(:car_params) { FactoryBot.attributes_for(:car) }
 
   describe 'GET /users/cars' do

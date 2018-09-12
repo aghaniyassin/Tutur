@@ -1,5 +1,6 @@
 class RentalsController < ApplicationController
   before_action :find_car, only: [:new]
+  before_action :signed_in_user?, only: [:create, :index, :show]
 
   def new
     @rental = @car.rentals.build date_query

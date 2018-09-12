@@ -4,6 +4,7 @@ class Rental < ApplicationRecord
   validates :start_at, presence: true
   validates :end_at, presence: true
   validate :valid_dates
+  validate :available
 
   belongs_to :user
   belongs_to :car
@@ -39,6 +40,16 @@ class Rental < ApplicationRecord
       'Accepted'
     when false
       'Rejected'
+    end
+  end
+
+  def available
+    return nil unless start_at && end_at
+    if Rental.where(status: true, car_id: car.id)
+             .where('? > start_at OR ? > start_at', start_at, end_at)
+             .where('? < end_at OR ? < end_at', start_at, end_at).any?
+
+      errors.add(:start_at, 'This car is unavailable on these dates')
     end
   end
 end

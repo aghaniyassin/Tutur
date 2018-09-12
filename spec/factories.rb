@@ -2,12 +2,12 @@ require_relative'./helpers'
 
 FactoryBot.define do
   factory :user do
-    sequence(:first_name) { Faker::Name.name }
-    sequence(:last_name)  { Faker::Name.name }
+    sequence(:first_name)   { Faker::Name.name }
+    sequence(:last_name)    { Faker::Name.name }
 
-    sequence(:email)      { Faker::Internet.email }
-    sequence(:password)   { Faker::Lorem.characters(6) }
-    sequence(:description)   { Faker::Lorem.characters(6) }
+    sequence(:email)        { Faker::Internet.email }
+    sequence(:password)     { Faker::Lorem.characters(6) }
+    sequence(:description)  { Faker::Lorem.sentences }
   end
 
   factory :car do
@@ -33,8 +33,8 @@ FactoryBot.define do
   end
 
   factory :rental do
-    sequence(:start_at)        { rand(1..10).day.since }
-    sequence(:end_at)          { rand(10..20).day.since }
+    sequence(:start_at)      { rand(1..10).day.since }
+    sequence(:end_at)        { rand(10..20).day.since }
     car
     user
   end

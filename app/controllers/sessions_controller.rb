@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     if login(session_params[:email], session_params[:password])
-      redirect_to root_path
+      redirect_back_or root_path
     else
       render :new
     end
